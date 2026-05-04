@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Olashubomi Airline</title>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      background: #0D0D0D;
+      font-family: Arial;
+      overflow-x: hidden;
+      color: white;
+    }
+
+    .brand {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+    }
+
+    .logo text {
+      font-size: 32px;
+      letter-spacing: 10px;
+      fill: none;
+      stroke: #F8BBD0;
+      stroke-width: 1.2;
+      filter: drop-shadow(0 0 6px #F8BBD0);
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .headline {
+      font-size: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="brand">
+  <svg viewBox="0 0 600 100" class="logo">
+    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+      OLASHUBOMI
+    </text>
+  </svg>
+</div>
+
+<section class="hero">
+  <h1 class="headline">Fly Beyond Limits</h1>
+</section>
+
+<script>
+gsap.to(".brand", {
+  y: "+=10",
+  duration: 3,
+  ease: "sine.inOut",
+  repeat: -1,
+  yoyo: true
+});
+
+gsap.to(".logo", {
+  scale: 1.02,
+  duration: 4,
+  ease: "sine.inOut",
+  repeat: -1,
+  yoyo: true
+});
+</script>
+
+</body>
+</html>
