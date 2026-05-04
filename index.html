@@ -1,83 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Olashubomi Airline</title>
+<meta charset="UTF-8">
+<title>Olashubomi Airline</title>
 
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-  <style>
-    body {
-      margin: 0;
-      background: #0D0D0D;
-      font-family: Arial;
-      overflow-x: hidden;
-      color: white;
-    }
-<img src="https://i.imgur.com/3Q7Qv0K.png" class="cloud cloud1">
-<img src="https://i.imgur.com/3Q7Qv0K.png" class="cloud cloud2">
+<style>
+body {
+  margin: 0;
+  background: #0D0D0D;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+  color: white;
+}
 
-<img src="https://i.imgur.com/Q9qFt3H.png" class="plane">
-    .brand {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1000;
-    }
+/* BRAND */
+.brand {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
 
-    .logo text {
-      font-size: 32px;
-      letter-spacing: 10px;
-      fill: none;
-      stroke: #F8BBD0;
-      stroke-width: 1.2;
-      filter: drop-shadow(0 0 6px #F8BBD0);
-    }
+.logo text {
+  font-size: 34px;
+  letter-spacing: 12px;
+  fill: none;
+  stroke: #F8BBD0;
+  stroke-width: 1.2;
+  filter: drop-shadow(0 0 8px #F8BBD0);
+}
 
-    .hero {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+/* HERO */
+.hero {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .headline {
-      font-size: 2rem;
-    }
-  </style>
+.headline {
+  font-size: 2.5rem;
+  color: #F8BBD0;
+}
+
+/* CLOUDS */
+.cloud {
+  position: absolute;
+  width: 120%;
+  opacity: 0.25;
+}
+
+.cloud1 { top: 10%; }
+.cloud2 { top: 45%; }
+
+/* PLANE */
+.plane {
+  position: absolute;
+  width: 220px;
+  top: 55%;
+  left: -30%;
+}
+
+/* SECTIONS */
+.section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+</style>
 </head>
 
 <body>
 
+<!-- BRAND -->
 <div class="brand">
-  <svg viewBox="0 0 600 100" class="logo">
-    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
-      OLASHUBOMI
-    </text>
-  </svg>
+<svg viewBox="0 0 600 100" class="logo">
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+    OLASHUBOMI
+  </text>
+</svg>
 </div>
 
+<!-- HERO -->
 <section class="hero">
+
+  <img src="https://i.imgur.com/3Q7Qv0K.png" class="cloud cloud1">
+  <img src="https://i.imgur.com/3Q7Qv0K.png" class="cloud cloud2">
+
+  <img src="https://i.imgur.com/Q9qFt3H.png" class="plane">
+
   <h1 class="headline">Fly Beyond Limits</h1>
 </section>
 
+<!-- EXTRA SPACE FOR SCROLL -->
+<section class="section">Explore Destinations</section>
+<section class="section">Luxury Experience</section>
+
 <script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* BRAND FLOAT */
 gsap.to(".brand", {
   y: "+=10",
   duration: 3,
-  ease: "sine.inOut",
   repeat: -1,
-  yoyo: true
+  yoyo: true,
+  ease: "sine.inOut"
 });
 
+/* LOGO BREATH */
 gsap.to(".logo", {
   scale: 1.02,
   duration: 4,
-  ease: "sine.inOut",
   repeat: -1,
-  yoyo: true
+  yoyo: true,
+  ease: "sine.inOut"
+});
+
+/* PLANE FLIGHT */
+gsap.to(".plane", {
+  x: "130vw",
+  scrollTrigger: {
+    trigger: ".hero",
+    start: "top top",
+    end: "bottom top",
+    scrub: true
+  }
+});
+
+/* CLOUD PARALLAX */
+gsap.to(".cloud1", {
+  x: "-20%",
+  scrollTrigger: {
+    trigger: ".hero",
+    scrub: true
+  }
+});
+
+gsap.to(".cloud2", {
+  x: "-40%",
+  scrollTrigger: {
+    trigger: ".hero",
+    scrub: true
+  }
 });
 </script>
 
